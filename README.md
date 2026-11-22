@@ -2,10 +2,11 @@
 
 A light, native macOS app for TikTok LIVE. Sound effects, text-to-speech, and a like counter with a goal overlay, without the heavy GPU use.
 
-**Version 1.1.0**
+**Version 1.2.0**
 
 ## What it does
 
+- **Chat commands with replies.** Viewers type something like `!goal` and NiceStreamer answers, out loud, in your TikTok chat, or both.
 - **Sound effects.** Play a clip when someone follows, shares, sends a gift, types a chat command (like `!airhorn`), or when your likes pass a milestone.
 - **Text-to-speech.** Read chat messages aloud, and announce new followers, gifts and goal completions, using any voice installed on your Mac.
 - **Like counter and goal.** Track likes for your session and set a goal that can raise itself when you hit it.
@@ -47,6 +48,35 @@ Each sound is a rule: a trigger, an audio file, a volume and a cooldown.
 | Like milestone | Plays every N likes (for example, every 100) |
 
 Short clips (under about 10 seconds) work best. The cooldown stops a sound from spamming during busy moments.
+
+## Chat commands
+
+On the **Commands** page, each command has a trigger (like `!goal`), a reply, and a choice of where the reply goes.
+
+- **Say aloud.** The reply is read out with your chosen voice.
+- **Post in chat.** The reply is sent to your TikTok chat. This needs chat replies turned on (see below).
+- **Cooldowns.** One for everyone and one for each viewer, so a command can't be spammed.
+- **Variables.** Put `{user}`, `{args}`, `{likes}`, `{target}`, `{goal}`, `{percent}` or `{remaining}` in a reply and they're filled in automatically. For example: `{goal}: {likes} / {target} likes ({percent}%)`.
+- A command matches the first word of a message, so `!shoutout someone` triggers `!shoutout` and `{args}` becomes `someone`.
+- Command messages aren't read aloud as normal chat.
+- Press **Add examples** on an empty page to start with `!goal` and `!hello`, and **Test** on any command to try it without being live. Tests never post to chat.
+
+### Posting replies in TikTok chat
+
+Posting in chat means NiceStreamer has to act as your logged-in TikTok account, so it's off by default. To turn it on:
+
+1. On the **Connection** page, switch on **Post replies in chat**.
+2. In your browser, log in to tiktok.com, open the developer tools, and find the cookies for tiktok.com (under the Application or Storage tab).
+3. Copy the values of **sessionid** and **tt-target-idc** into NiceStreamer and press **Save login**.
+4. Make sure your Euler Stream API key is set, then turn on **Post in chat** for the commands that should reply.
+
+Things to know before you do:
+
+- Your cookies are stored in the macOS Keychain, not in the settings file. **Remove login** deletes them.
+- While chat replies are on, the Euler Stream service receives your session in order to sign the connection.
+- Automated posting may go against TikTok's rules, so use it at your own risk.
+- NiceStreamer posts at most one message every 2 seconds and trims replies to 150 characters.
+- macOS may ask for permission to use the Keychain item again after an update.
 
 ## Voice
 
@@ -107,6 +137,7 @@ NiceStreamer plays audio through your Mac's output. To get it into your stream, 
 | "cloudflared isn't installed" | Run `brew install cloudflared`, then switch the public link off and on |
 | Overlay link doesn't load | Check the status on Goal & Overlay; if the port is busy, pick another one |
 | No sound on stream | Route your Mac's audio output into your streaming software |
+| Replies don't appear in chat | Check that Post replies in chat is on, your login is saved, your API key is set, and Post in chat is on for that command. Reconnect after changing login settings |
 | Speech never plays | Check the Voice page and that Text-to-speech is on in Quick controls |
 
 ## Updates
