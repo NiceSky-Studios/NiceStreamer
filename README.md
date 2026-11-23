@@ -2,7 +2,7 @@
 
 A light, native macOS app for TikTok LIVE. Sound effects, text-to-speech, chat commands, a like goal overlay and stream recaps, without the heavy GPU use.
 
-**Version 1.3.1**
+**Version 1.3.2**
 
 ## What it does
 
@@ -194,6 +194,7 @@ NiceStreamer checks for new versions on [GitHub](https://github.com/NiceSky-Stud
 | Problem | Try this |
 | --- | --- |
 | Won't connect | Add an Euler Stream API key (Dashboard banner or Connection page), make sure you're live, and check the username |
+| NiceStreamer freezes or doesn't respond when opened | Update to 1.3.2 or newer. Older versions could freeze at launch while looking for cloudflared or Node.js. As a quick workaround, turn off the public https link before quitting |
 | Says a request "requires a Business plan" | Update to NiceStreamer 1.3.1 or newer. NiceStreamer no longer asks for the feature that needed that plan. If it still appears, check your plan at eulerstream.com/pricing |
 | "Node.js not found" | Install Node.js, or enter its path on the Connection page |
 | Streaming app rejects the overlay link | Use the public https link or the goal window |
