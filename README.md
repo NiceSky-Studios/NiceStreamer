@@ -2,7 +2,7 @@
 
 A light, native macOS app for TikTok LIVE. Sound effects, text-to-speech, chat commands, a like goal overlay and stream recaps, without the heavy GPU use.
 
-**Version 1.3.2**
+**Version 1.3.3**
 
 ## What it does
 
@@ -99,7 +99,7 @@ Posting in chat means NiceStreamer has to act as your logged-in TikTok account, 
 Things to know before you do:
 
 - Your cookies are stored in the macOS Keychain, not in the settings file. **Remove login** deletes them.
-- While chat replies are on, the Euler Stream service receives your session in order to sign the connection.
+- While chat replies are on, your session is sent to the Euler Stream signing server (`api.eulerstream.com`) in order to sign the connection. NiceStreamer allow-lists that one host for you, because the connection library refuses to send a login anywhere you haven't approved.
 - Automated posting may go against TikTok's rules, so use it at your own risk.
 - NiceStreamer posts at most one message every 2 seconds and trims messages to 150 characters.
 - macOS may ask for permission to use the Keychain item again after an update.
@@ -194,6 +194,7 @@ NiceStreamer checks for new versions on [GitHub](https://github.com/NiceSky-Stud
 | Problem | Try this |
 | --- | --- |
 | Won't connect | Add an Euler Stream API key (Dashboard banner or Connection page), make sure you're live, and check the username |
+| Says "authenticate_websocket is true, but no whitelist host defined" | Update to NiceStreamer 1.3.3 or newer. As a quick workaround, turn off Post replies in chat on the Connection page to connect without your login |
 | NiceStreamer freezes or doesn't respond when opened | Update to 1.3.2 or newer. Older versions could freeze at launch while looking for cloudflared or Node.js. As a quick workaround, turn off the public https link before quitting |
 | Says a request "requires a Business plan" | Update to NiceStreamer 1.3.1 or newer. NiceStreamer no longer asks for the feature that needed that plan. If it still appears, check your plan at eulerstream.com/pricing |
 | "Node.js not found" | Install Node.js, or enter its path on the Connection page |
