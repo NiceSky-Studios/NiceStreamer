@@ -2,12 +2,12 @@
 
 A light, native macOS app for TikTok LIVE. Sound effects, text-to-speech, chat commands, a like goal overlay and stream recaps, without the heavy GPU use.
 
-**Version 1.4.0**
+**Version 1.5.0**
 
 ## What it does
 
 - **Sound effects.** Play a clip when someone follows, shares, joins, sends a gift or a gift combo, types a chat command, or when your likes pass a milestone.
-- **Text-to-speech.** Read chat aloud and announce followers, gifts, combos, joins and goals, with a short list of good Mac voices or natural Google voices.
+- **Text-to-speech.** Read chat aloud and announce followers, gifts, combos, joins and goals, with a short list of good Mac voices, a free Google voice, or Google Cloud voices.
 - **Chat commands.** Viewers type something like `!goal` and NiceStreamer replies out loud, in your TikTok chat, or both. Commands can also be limited to you or your moderators and can control NiceStreamer itself.
 - **Timed announcements.** Repeat a reminder every few minutes while you're live.
 - **Like counter and goal.** Track likes and set a goal that can raise itself.
@@ -112,22 +112,23 @@ Things to know before you do:
 - Set the voice, speed and volume.
 - The voice list is kept short: good voices in your language and English, best quality first, with the novelty voices left out. Turn on **Show every installed voice** to see them all.
 
-### Google voices
+### Voice engines
 
-Switch the **Voice engine** to **Google voices** for the clear, familiar Google sound. A Mac has no built-in Google voice, so this uses Google Cloud Text-to-Speech with your own API key.
+Pick an engine at the top of the **Voice** page.
 
-1. In Google Cloud, enable the Text-to-Speech API and create an API key (the **Get a key** button opens Google's guide).
+| Engine | Cost | What to know |
+| --- | --- | --- |
+| **Mac** | Free | Works offline and nothing leaves your Mac. Download Enhanced or Premium voices in System Settings (Accessibility, Spoken Content, System Voice, Manage Voices) for a nicer sound. They appear in the list marked Enhanced or Premium. |
+| **Google (free)** | Free, no account or key | The familiar Google Translate voice, with English (US, UK, Australia, India) and several other languages. It is **not an official Google service**, so it can stop working or limit requests at any time, and Google's terms may not allow this use. |
+| **Google Cloud** | Needs a billing account | Google's official service, with a choice of male and female voices. Google requires a payment method, gives a free monthly allowance, and charges automatically once you go over it. |
+
+With the two Google engines, the text of each message is sent to Google to be spoken, including what your viewers type. If a Google voice fails or can't be reached, NiceStreamer shows a message in the activity feed and speaks with your Mac voice instead, so nothing is lost. Both follow your speed and volume settings and play on the speech output device you chose in **Settings**.
+
+#### Setting up Google Cloud voices
+
+1. In Google Cloud, enable the Text-to-Speech API, set up billing and create an API key (the **Get a key** button opens Google's guide). Setting a budget alert is a good idea.
 2. Paste the key on the **Voice** page and press **Save key**. It's stored in your Keychain.
 3. Pick a voice from the short list (US, UK and Australian English, male and female), or type any Google voice name, like `es-ES-Standard-A`, to use another language.
-
-Things to know:
-
-- The text of each message is sent to Google to be spoken, including what your viewers type.
-- Google gives a monthly free allowance and may charge beyond it, so check its pricing.
-- If Google can't be reached or the key is wrong, NiceStreamer tells you and speaks with your Mac voice instead, so nothing is lost.
-- Google voices follow your speed and volume settings and play on the speech output device you chose in **Settings**.
-- Messages are trimmed to a maximum length, links and emoji are removed, and anything containing a blocked word is skipped.
-- If chat gets busy, extra messages are dropped instead of building up a backlog.
 
 ## Showing your goal on stream
 
@@ -221,7 +222,7 @@ NiceStreamer checks for new versions on [GitHub](https://github.com/NiceSky-Stud
 | Replies don't appear in chat | Check that Post replies in chat is on, your login is saved, your API key is set, and Post in chat is on for that command. Reconnect after changing login settings |
 | A shortcut does nothing | It may already be used by macOS or another app. Pick a different combination |
 | Speech never plays | Check the Voice page and that Text-to-speech is on in Quick controls |
-| Google voice doesn't work | Check that the Text-to-Speech API is enabled for your key, that billing is set up if Google asks for it, and read the message in the activity feed. NiceStreamer speaks with your Mac voice meanwhile |
+| A Google voice doesn't work | Read the message in the activity feed. For Google (free), it may be rate limited or no longer available, so try again later or switch engines. For Google Cloud, check that the Text-to-Speech API is enabled for your key and that billing is set up. NiceStreamer speaks with your Mac voice meanwhile |
 
 ## Where your data lives
 
