@@ -2,7 +2,7 @@
 
 A light, native macOS app for TikTok LIVE. Sound effects, text-to-speech, chat commands, a like goal overlay and stream recaps, without the heavy GPU use.
 
-**Version 1.5.0**
+**Version 1.6.0**
 
 ## What it does
 
@@ -129,6 +129,20 @@ With the two Google engines, the text of each message is sent to Google to be sp
 1. In Google Cloud, enable the Text-to-Speech API, set up billing and create an API key (the **Get a key** button opens Google's guide). Setting a budget alert is a good idea.
 2. Paste the key on the **Voice** page and press **Save key**. It's stored in your Keychain.
 3. Pick a voice from the short list (US, UK and Australian English, male and female), or type any Google voice name, like `es-ES-Standard-A`, to use another language.
+
+### Controlling what gets read
+
+Everything below is on the **Voice** page.
+
+- **Who gets read aloud:** everyone, followers and moderators, or moderators and you. TikTok doesn't always say who follows you or moderates, so NiceStreamer also counts anyone who follows while you're live, and always recognises you by your username.
+- **Never read these viewers:** a list of usernames to ignore.
+- **Skip very short messages**, **ignore repeated messages** (the same viewer sending the same thing within 30 seconds) and **say the name only when the speaker changes** keep busy chat from turning into noise.
+- **Names:** an empty, invisible or emoji-only name is said as "no name" (you can change that text). **Tidy up usernames** turns `user_name.123456` into "user name" and drops long number endings.
+- **Emoji:** leave them out, or let the voice say them. Long runs of the same emoji are shortened.
+- **Stretched-out text:** `loooool` becomes `lool` and `!!!!` becomes `!`.
+- **Word filter:** switch on the built-in swear word list and add your own words. Use `*` for partial matches, like `*bad*`. Words are matched as whole words, so a short word never catches a longer harmless one. Choose what happens to a message with a filtered word: skip it, say "bleep" in its place, or leave the word out. No filter catches everything, so keep an eye on your chat.
+- **Say it like this:** a pronunciation list, one per line, like `lol = laughing out loud`. **Add common slang** fills in a starter set.
+- **Limits:** a maximum message length and a queue limit. Links are always removed, and when chat gets busy, extra messages are dropped instead of building up a backlog.
 
 ## Showing your goal on stream
 
