@@ -2,7 +2,7 @@
 
 A light, native macOS app for TikTok LIVE. Sound effects, text-to-speech, chat commands, a like goal overlay and stream recaps, without the heavy GPU use.
 
-**Version 1.6.0**
+**Version 1.6.1**
 
 ## What it does
 
@@ -60,6 +60,7 @@ Short clips (under about 10 seconds) work best.
 On the **Commands** page, each command has a trigger (like `!goal`), a reply, and options for how it behaves.
 
 - **Say aloud** reads the reply with your chosen voice. **Post in chat** sends it to your TikTok chat (needs chat replies turned on, see below).
+- **@ the viewer** starts a posted reply with `@username` so it's clear who it's for. A reply is a normal chat message from your account. NiceStreamer can't attach it to the viewer's specific message.
 - **Who can use it:** everyone, moderators and you, or only you. You're always recognised by your username. Moderator detection is best effort.
 - **Action:** a command can also run something, such as skip the current speech, mute or unmute sound effects, mute or unmute speech, or reset the like counter. This is how you build streamer-only commands like `!skip` and `!mute`. The reply can be left empty for an action-only command.
 - **Cooldowns:** one for everyone and one for each viewer, so a command can't be spammed.
@@ -95,6 +96,10 @@ Posting in chat means NiceStreamer has to act as your logged-in TikTok account, 
 2. In your browser, log in to tiktok.com, open the developer tools, and find the cookies for tiktok.com (under the Application or Storage tab).
 3. Copy the values of **sessionid** and **tt-target-idc** into NiceStreamer and press **Save login**.
 4. Make sure your Euler Stream API key is set, then turn on **Post in chat** for the commands and announcements that should post.
+
+The **Commands** page shows a checklist of everything that has to be in place (the setting, your saved login, your API key, a live connection, and a connection made with your login) and a **Send a test message to my chat** button that proves the whole path works.
+
+Every command and every reply is also written to the Dashboard's activity feed. If a command is ignored, a reply isn't posted, or Euler Stream or TikTok refuses a message, the feed says why.
 
 Things to know before you do:
 
@@ -233,7 +238,7 @@ NiceStreamer checks for new versions on [GitHub](https://github.com/NiceSky-Stud
 | "cloudflared isn't installed" | Run `brew install cloudflared`, then switch the public link off and on |
 | Overlay link doesn't load | Check the status on Goal & Overlay; if the port is busy, pick another one |
 | No sound on stream | Choose your loopback device under Settings, Audio output |
-| Replies don't appear in chat | Check that Post replies in chat is on, your login is saved, your API key is set, and Post in chat is on for that command. Reconnect after changing login settings |
+| Replies don't appear in chat | Open the Commands page and check the checklist at the top, then press Send a test message to my chat. The Dashboard's activity feed explains each failure. Posting needs Post replies in chat on, your saved login, your API key, and a connection made with the login (disconnect and connect again after changing it). Euler Stream may also need a higher plan to send chat messages |
 | A shortcut does nothing | It may already be used by macOS or another app. Pick a different combination |
 | Speech never plays | Check the Voice page and that Text-to-speech is on in Quick controls |
 | A Google voice doesn't work | Read the message in the activity feed. For Google (free), it may be rate limited or no longer available, so try again later or switch engines. For Google Cloud, check that the Text-to-Speech API is enabled for your key and that billing is set up. NiceStreamer speaks with your Mac voice meanwhile |
